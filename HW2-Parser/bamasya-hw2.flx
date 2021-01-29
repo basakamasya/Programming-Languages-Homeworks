@@ -1,0 +1,28 @@
+%{
+#include "bamasya-hw2.tab.h"
+%}
+%%
+"int" return tINTTYPE;
+"int vector" return tINTVECTORTYPE;
+"int matrix" return tINTMATRIXTYPE;
+"real" return tREALTYPE;
+"real vector" return tREALVECTORTYPE;
+"real matrix" return tREALMATRIXTYPE;
+"transpose" return tTRANSPOSE;
+"if" return tIF;
+"endif" return tENDIF;
+[a-zA-Z_][a-zA-Z0-9_]* return tIDENT;
+".*" return tDOTPROD;
+-?[0-9]"."[0-9]+(E-?[0-9]+)? return tREALNUM;
+-?[0-9]+(E[0-9]+)? return tINTNUM;
+"&&" return tAND;
+"||" return tOR;
+">" return tGT;
+"<" return tLT;
+">=" return tGTE;
+"<=" return tLTE;
+"!=" return tNE;
+"==" return tEQ;
+[ \t\n]+
+. return yytext[0];
+%%

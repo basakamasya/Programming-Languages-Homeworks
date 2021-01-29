@@ -1,0 +1,33 @@
+%{
+int lineno = 1;
+int linenovar = 1;
+int len;
+char * currentyytext;
+#include "bamasya-ex1.tab.h"
+%}
+%%
+"int" return tINT;
+"string" return tSTRING;
+"return" return tRETURN;
+"print" return tPRINT;
+"(" return tLPAR;
+")" return tRPAR;
+"," return tCOMMA;
+"%" return tMOD;
+"=" return tASSIGNM;
+"-" return tMINUS;
+"+" return tPLUS;
+"/" return tDIV;
+"*" return tSTAR;
+";" return tSEMI;
+"{" return tLBRAC;
+"}" return tRBRAC;
+[a-zA-Z_][a-zA-Z0-9_]* { currentyytext = yytext; len = yyleng;linenovar = lineno; return tIDENT; }
+[0-9]+ return tINTVALPOS;
+-[0-9]+ return tINTVALNEG;
+\n lineno++;
+"\""[^\"]*"\"" {return tSTRINGVAL;}
+[ \t]+
+. return yytext[0];
+%%
+
